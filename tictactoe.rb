@@ -35,7 +35,6 @@ class Game
 		@player_one = Player.new("Player 1", "X")
     @player_two = Player.new("Player 2", "O")
     @board = Board.new
-    @current_player = player_one
     @win_conditions = [[0,1,2], [3,4,5], [6,7,8],
                       [0,3,6], [1,4,7], [2,5,8],
                       [0,4,8], [2,4,6]]
@@ -66,26 +65,33 @@ class Game
   def end?(player)
     if winner?(player)
       puts "You win #{player.name}!"
+      return true
+    else
+      return false
     end
+
     #if draw?
     #end
   end
 
   def winner?(player)
-    win_conditions.any? {|cells| player.marks.include?(cells)}    
+    win_conditions.any? {|cells| player.moves.include?(cells.each {|x| x})}#NOT WORKING!!
   end
 
 
   def game_loop
 
     loop do  
-      board.show_board
+      board.show_board  
       mark_cell(get_input(player_one), player_one)
+        p player_one.moves #temp
       break if end?(player_one)
       board.show_board
       mark_cell(get_input(player_two), player_two)
+        p player_two.moves #temp
       break if end?(player_two)
     end
+    board.show_board
 
   end
 
