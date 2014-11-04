@@ -54,7 +54,7 @@ class Game
   def get_input(player)
     begin
       puts
-      print "#{player.name} please choose a cell (0 - 9): "
+      print "#{player.name} (#{player.mark}) please choose a cell (0 - 9): "
       input = gets.chomp.to_i
     end until valid?(input)
     return input
