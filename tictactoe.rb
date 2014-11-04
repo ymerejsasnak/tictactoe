@@ -70,14 +70,21 @@ class Game
       return false
     end
 
-    #if draw?
-    #end
+    if draw?
+      puts "Draw game."
+      return true
+    else
+      return false
+    end
   end
 
   def winner?(player)
-    win_conditions.any? {|cells| player.moves.include?(cells.each {|x| x})}#NOT WORKING!!
+    win_conditions.any? { |cells| cells.all? { |cell| player.moves.include?(cell) } }
   end
 
+  def draw?
+    return ((player_one.moves.size + player_two.moves.size) == 9)
+  end
 
   def game_loop
 
