@@ -67,14 +67,12 @@ class Game
       puts "You win #{player.name}!"
       return true
     else
-      return false
-    end
-
-    if draw?
-      puts "Draw game."
-      return true
-    else
-      return false
+      if draw?
+        puts "Draw game."
+        return true
+      else
+        return false
+      end
     end
   end
 
