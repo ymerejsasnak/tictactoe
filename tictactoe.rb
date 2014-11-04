@@ -17,12 +17,18 @@ class Board
 
  	def show_board
  		puts
- 		puts "   #{@grid[0]} | #{@grid[1]} | #{@grid[2]} "
- 		puts " ------------- "
- 		puts "   #{@grid[3]} | #{@grid[4]} | #{@grid[5]} "
- 		puts " ------------- "
- 		puts "   #{@grid[6]} | #{@grid[7]} | #{@grid[8]} "
+    puts " 0)  |1)  |2)   "
+ 		puts "   #{@grid[0]} |  #{@grid[1]} |  #{@grid[2]} "
+    puts "     |    |     "
+ 		puts " -------------- "
+ 		puts " 3)  |4)  |5)   " 
+    puts "   #{@grid[3]} |  #{@grid[4]} |  #{@grid[5]} "
+ 		puts "     |    |     "
+    puts " -------------- "
+ 		puts " 6)  |7)  |8)   "
+    puts "   #{@grid[6]} |  #{@grid[7]} |  #{@grid[8]} "
  		puts
+    puts
  	end
 end
 
@@ -64,11 +70,17 @@ class Game
 
   def end?(player)
     if winner?(player)
-      puts "You win #{player.name}!"
+      puts
+      puts "***********************"
+      puts "** You win #{player.name}! **"
+      puts "***********************"
+      puts
       return true
     else
       if draw?
-        puts "Draw game."
+        puts
+        puts "==== Draw game ===="
+        puts
         return true
       else
         return false
@@ -86,18 +98,18 @@ class Game
 
   def game_loop
 
-    loop do  
-      board.show_board  
+      board.show_board 
+
+    loop do   #repetetive...DRY!!
       mark_cell(get_input(player_one), player_one)
-        p player_one.moves #temp
+      board.show_board 
       break if end?(player_one)
-      board.show_board
+      
       mark_cell(get_input(player_two), player_two)
-        p player_two.moves #temp
+      board.show_board
       break if end?(player_two)
     end
-    board.show_board
-
+    
   end
 
 end
